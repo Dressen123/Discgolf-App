@@ -15,16 +15,7 @@ class MyWidget extends StatelessWidget {
           title: const Text('DG Marked'),
           backgroundColor: Colors.transparent,
         ),
-        body: Center(
-          child: Text(
-            'Producers',
-            style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-                color: Colors.red[600]),
-          ),
-        ),
+        body: const Center(),
       ),
     );
   }
