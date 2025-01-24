@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:dg_marketplace/screens/wrapper.dart';
 
-void main() => runApp(const MaterialApp(
-      home: MyWidget(),
-    ));
+void main() => runApp(const MyApp());
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  //This widget is the root of the application
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('DG Marked'),
-          backgroundColor: Colors.transparent,
-        ),
-        body: const Center(),
-      ),
+    return const MaterialApp(
+      home: Wrapper(),
     );
   }
 }
