@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dg_marketplace/services/auth.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -20,7 +21,15 @@ class _SignInState extends State<SignIn> {
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
           child: ElevatedButton(
             child: const Text('Sign in anon'),
-            onPressed: () async {},
+            onPressed: () async {
+              dynamic result = await _auth.signInAnon();
+              if (result == null) {
+                print('Error signing in');
+              } else {
+                print('signed in');
+                print(result);
+              }
+            },
           ),
         ));
   }
