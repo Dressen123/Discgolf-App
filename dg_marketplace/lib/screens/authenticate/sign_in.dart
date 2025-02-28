@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dg_marketplace/services/auth.dart';
+import 'package:dg_marketplace/screens/services/auth.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -9,6 +9,8 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,7 @@ class _SignInState extends State<SignIn> {
               if (result == null) {
                 print('Error signing in');
               } else {
-                print('signed in');
+                print('Signed in');
                 print(result);
               }
             },

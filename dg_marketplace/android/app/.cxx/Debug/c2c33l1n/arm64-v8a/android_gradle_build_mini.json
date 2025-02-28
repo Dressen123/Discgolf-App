@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/andreasgilbertleite/development/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/andreasgilbertleite/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/andreasgilbertleite/Repositories/Github/Discgolf-Marked/development copy/Discgolf-App/dg_marketplace/android/app/.cxx/Debug/c2c33l1n/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/andreasgilbertleite/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/andreasgilbertleite/Repositories/Github/Discgolf-Marked/development copy/Discgolf-App/dg_marketplace/android/app/.cxx/Debug/c2c33l1n/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

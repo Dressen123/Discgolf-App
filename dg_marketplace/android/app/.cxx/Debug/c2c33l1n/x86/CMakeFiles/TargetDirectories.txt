@@ -1,0 +1,2 @@
+/Users/andreasgilbertleite/Repositories/Github/Discgolf-Marked/development copy/Discgolf-App/dg_marketplace/android/app/.cxx/Debug/c2c33l1n/x86/CMakeFiles/edit_cache.dir
+/Users/andreasgilbertleite/Repositories/Github/Discgolf-Marked/development copy/Discgolf-App/dg_marketplace/android/app/.cxx/Debug/c2c33l1n/x86/CMakeFiles/rebuild_cache.dir
