@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "887433877091",
+    "project_id": "dgmarked-267c5",
+    "storage_bucket": "dgmarked-267c5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887433877091:android:f627b575820e5d82750a56",
+        "android_client_info": {
+          "package_name": "com.example.dg_marketplace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaNlxut5OGen3SbtSmRLnIoKGTtoBqUBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
