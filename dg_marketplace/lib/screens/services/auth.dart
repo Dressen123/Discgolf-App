@@ -1,24 +1,30 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dg_marketplace/models/user.dart'
+    as custom_user; // Alias to avoid conflicts
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  //sign in anon
+  // Create user object based on Firebase User
+  custom_user.User? _userFromFirebaseUser(User? user) {
+    if (user == null) return null;
+    return custom_user.User(uid: user.uid);
+  }
 
-  Future signInAnon() async {
+  // Sign in anonymously
+  Future<custom_user.User?> signInAnon() async {
     try {
       UserCredential result = await _auth.signInAnonymously();
-      User? user = result.user;
-      return user;
+      User? firebaseUser = result.user;
+      return _userFromFirebaseUser(firebaseUser);
     } catch (e) {
-      print(e.toString());
+      print('Error signing in anonymously: $e');
       return null;
     }
   }
 
-  //sign in with email & password
-
-  //register with email & password
-
-  //sign out
+  // Sign out function
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
 }
