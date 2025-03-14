@@ -4,12 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:dg_marketplace/models/user.dart';
+import 'package:dg_marketplace/screens/services/auth.dart'; // ✅ Import AuthService
 
-/// The main entrypoint for the application.
-///
-/// Ensures that the Flutter binding is initialized and then initializes
-/// Firebase with the options for the current platform. Then, it runs the
-/// [MyApp] widget.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -23,10 +19,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<User>.value(
-      value: AuthService().user,
-        MaterialApp(
+    return StreamProvider<User?>(
+      create: (context) => AuthService().user,
+      initialData: null,
+      child: MaterialApp(
         home: Wrapper(),
-    ),);
+      ),
+    );
   }
 }

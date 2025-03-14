@@ -14,10 +14,10 @@ class AuthService {
   // auth change user stream
 
   Stream<custom_user.User?> get user {
-    return _auth.onAuthStateChanged
-      //.map((custom_user.User? user) => _userFromFirebaseUser(user));
-      .map(_userFromFirebaseUser);
-
+    return _auth
+        .authStateChanges()
+        //.map((custom_user.User? user) => _userFromFirebaseUser(user));
+        .map(_userFromFirebaseUser);
   }
 
   // Sign in anonymously
@@ -33,7 +33,12 @@ class AuthService {
   }
 
   // Sign out function
-  Future<void> signOut() async {
-    await _auth.signOut();
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 }

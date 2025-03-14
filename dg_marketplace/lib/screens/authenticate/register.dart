@@ -1,16 +1,16 @@
-import 'package:dg_marketplace/screens/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:dg_marketplace/screens/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
 
-  const SignIn({super.key, required this.toggleView});
+  const Register({super.key, required this.toggleView});
 
   @override
-  State<SignIn> createState() => _MyWidgetState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _MyWidgetState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
 
   //Text field state
@@ -25,11 +25,11 @@ class _MyWidgetState extends State<SignIn> {
       appBar: AppBar(
           backgroundColor: Colors.brown[400],
           elevation: 0.0,
-          title: const Text('Sign in'),
+          title: const Text('Sign up'),
           actions: [
             TextButton.icon(
               icon: const Icon(Icons.person),
-              label: const Text("Register"),
+              label: const Text("Sign In"),
               onPressed: () {
                 widget.toggleView();
               },
@@ -60,7 +60,7 @@ class _MyWidgetState extends State<SignIn> {
                     backgroundColor: Colors.pink[400],
                   ),
                   child: const Text(
-                    "Sign in",
+                    "Register",
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
