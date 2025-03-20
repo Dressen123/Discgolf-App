@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dg_marketplace/screens/services/auth.dart';
+import 'package:dg_marketplace/screens/gpt-4o/chatsite.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -15,6 +16,13 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         actions: [
+          TextButton.icon(
+              onPressed: () async {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ChatSite()));
+              },
+              icon: const Icon(Icons.chat),
+              label: const Text('DiscGPT')),
           TextButton.icon(
             icon: const Icon(Icons.person),
             label: const Text('logout'),
