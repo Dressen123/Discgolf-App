@@ -39,7 +39,8 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(0, 166, 126, 1),
+          backgroundColor: const Color.fromRGBO(34, 37, 41, 1),
+          iconTheme: const IconThemeData(color: Colors.white),
           title: const Text(
             'DiscGPT',
             style: TextStyle(color: Colors.white),
