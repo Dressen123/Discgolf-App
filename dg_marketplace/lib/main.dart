@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:dg_marketplace/models/user.dart';
 import 'package:dg_marketplace/screens/services/auth.dart'; // ✅ Import AuthService
 
+// Initialize Firebase
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

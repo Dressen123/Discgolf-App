@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dg_marketplace/screens/services/auth.dart';
 import 'package:dg_marketplace/screens/gpt-4o/chatsite.dart';
+import 'package:dg_marketplace/screens/discsites/discsite.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -32,7 +33,14 @@ class Home extends StatelessWidget {
             onPressed: () async {
               await _auth.signOut();
             },
-          )
+          ),
+          TextButton.icon(
+            label: const Text("Shop"),
+            onPressed: () async {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DiscListScreen()));
+            },
+          ),
         ],
       ),
     );
