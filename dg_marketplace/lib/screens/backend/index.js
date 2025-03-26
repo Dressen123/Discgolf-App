@@ -12,13 +12,14 @@ app.use(express.json());
 // Create a connection to the MariaDB database
 const db = mysql.createConnection({
   host: "localhost",
-  user: "your_username", // Replace with your MariaDB username
-  password: "your_password", // Replace with your MariaDB password
-  database: "your_database", // Replace with your database name
+  user: "root", // Replace with your MariaDB username
+  password: "Andreas123", // Replace with your MariaDB password
+  database: "disc_info", // Replace with your database name
 });
 
 // Connect to the database
 db.connect((err) => {
+  //Connects to the database with the provided name and password etc
   if (err) {
     console.error("Error connecting to the database:", err.stack);
     return;
