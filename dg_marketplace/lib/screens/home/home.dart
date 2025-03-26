@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
                 );
               } else if (value == 'Logout') {
                 _auth.signOut();
-              } else if (value == 'Shop') {
+              } else if (value == 'Bag') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DiscListScreen()),
@@ -52,13 +52,13 @@ class Home extends StatelessWidget {
                           PrivacyPolicyPage()), // Navigate to Privacy Policy
                 );
               }
-            },
+            }, //From here and down is chatgpt generated
             itemBuilder: (BuildContext context) {
-              return [
+              return const [
                 PopupMenuItem<String>(
                   value: 'DiscGPT',
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(Icons.chat),
                       SizedBox(width: 8),
                       Text('DiscGPT'),
@@ -68,7 +68,7 @@ class Home extends StatelessWidget {
                 PopupMenuItem<String>(
                   value: 'Logout',
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(Icons.person),
                       SizedBox(width: 8),
                       Text('Logout'),
@@ -78,7 +78,7 @@ class Home extends StatelessWidget {
                 PopupMenuItem<String>(
                   value: 'Bag',
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(Icons.backpack),
                       SizedBox(width: 8),
                       Text('Your Bag'),
@@ -88,7 +88,7 @@ class Home extends StatelessWidget {
                 PopupMenuItem<String>(
                   value: 'PrivacyPolicy', // New option for Privacy Policy
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(Icons.policy),
                       SizedBox(width: 8),
                       Text('Privacy Policy'),
@@ -100,11 +100,11 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Your page content goes here
+            //Main Page content
           ],
         ),
       ),

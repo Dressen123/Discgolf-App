@@ -27,6 +27,7 @@ class _DiscListScreenState extends State<DiscListScreen> {
             "Discs",
             style: TextStyle(color: Colors.white),
           ),
+          iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: const Color.fromRGBO(34, 37, 41, 1)),
       body: FutureBuilder<List<Disc>>(
         future: _discs,

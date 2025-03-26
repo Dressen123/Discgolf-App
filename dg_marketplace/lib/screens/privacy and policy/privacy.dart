@@ -12,6 +12,7 @@ class PrivacyPolicyPage extends StatelessWidget {
           "Privacy Policy",
           style: TextStyle(color: Colors.white),
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: const Color.fromRGBO(34, 37, 41, 1),
       ),
       body: const Padding(
