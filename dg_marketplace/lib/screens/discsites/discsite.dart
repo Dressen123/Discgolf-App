@@ -22,7 +22,12 @@ class _DiscListScreenState extends State<DiscListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Discs")),
+      appBar: AppBar(
+          title: const Text(
+            "Discs",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: const Color.fromRGBO(34, 37, 41, 1)),
       body: FutureBuilder<List<Disc>>(
         future: _discs,
         builder: (context, snapshot) {

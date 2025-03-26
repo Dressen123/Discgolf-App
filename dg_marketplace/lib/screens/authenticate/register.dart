@@ -23,11 +23,11 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-          backgroundColor: Colors.brown[400],
+          backgroundColor: const Color.fromRGBO(34, 37, 41, 1),
           elevation: 0.0,
-          title: const Text('Sign up'),
+          title: const Text('Sign up', style: TextStyle(color: Colors.white)),
           actions: [
             TextButton.icon(
               icon: const Icon(Icons.person),
@@ -45,6 +45,10 @@ class _RegisterState extends State<Register> {
               children: [
                 SizedBox(height: 20.0),
                 TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Enter your email",
+                    labelText: "Email",
+                  ),
                   validator: (val) => val!.isEmpty ? "Enter an email" : null,
                   onChanged: (val) {
                     // val represents whatever is in the form field at that point.
@@ -53,6 +57,10 @@ class _RegisterState extends State<Register> {
                 ),
                 SizedBox(height: 20.0),
                 TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: "Enter your password",
+                      labelText: "Password",
+                    ),
                     obscureText: true,
                     validator: (val) => val!.length < 6
                         ? "Enter a password 6+ chars long"
