@@ -23,15 +23,21 @@ class _MyWidgetState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-          backgroundColor: Colors.brown[400],
+          backgroundColor: const Color.fromRGBO(34, 37, 41, 1),
           elevation: 0.0,
-          title: const Text('Sign in'),
+          title: const Text(
+            'Sign in',
+            style: TextStyle(color: Colors.white),
+          ),
           actions: [
             TextButton.icon(
-              icon: const Icon(Icons.person),
-              label: const Text("Register"),
+              icon: const Icon(Icons.person, color: Colors.white),
+              label: const Text(
+                "Register",
+                style: TextStyle(color: Colors.white),
+              ),
               onPressed: () {
                 widget.toggleView();
               },
@@ -43,16 +49,26 @@ class _MyWidgetState extends State<SignIn> {
             key: _formKey,
             child: Column(
               children: [
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
+                //Email form field
                 TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Enter your email",
+                    labelText: "Email",
+                  ),
                   validator: (val) => val!.isEmpty ? "Enter an email" : null,
                   onChanged: (val) {
                     // val represents whatever is in the form field at that point.
                     setState(() => email = val);
                   }, //Everytime the input changes, this function is being ran.
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
+                //Password form field
                 TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: "Enter your password",
+                      labelText: "Password",
+                    ),
                     validator: (val) => val!.length < 6
                         ? "Enter a password 6+ chars long"
                         : null,
@@ -61,7 +77,7 @@ class _MyWidgetState extends State<SignIn> {
                       //Password function
                       setState(() => password = val);
                     }),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink[400],
@@ -82,7 +98,8 @@ class _MyWidgetState extends State<SignIn> {
                   },
                 ),
                 const SizedBox(height: 12.0),
-                Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0))
+                Text(error,
+                    style: const TextStyle(color: Colors.red, fontSize: 14.0))
               ],
             ),
           )),

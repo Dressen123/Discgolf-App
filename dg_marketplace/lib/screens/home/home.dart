@@ -10,10 +10,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 180, 134, 111),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Marked'),
-        backgroundColor: Colors.brown[400],
+        title: const Text(
+          'Marked',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color.fromRGBO(34, 37, 41, 1),
         elevation: 0.0,
         actions: [
           TextButton.icon(
