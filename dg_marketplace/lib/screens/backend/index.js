@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const app = express();
 const port = 3000;
+require("dotenv").config();
 
 // Middleware
 app.use(cors());
@@ -11,10 +12,10 @@ app.use(express.json());
 
 // Create a connection to the MariaDB database
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root", // Replace with your MariaDB username
-  password: "Andreas123", // Replace with your MariaDB password
-  database: "disc_info", // Replace with your database name
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER, // Replace with your MariaDB username
+  password: process.env.DB_PASSWORD, // Replace with your MariaDB password
+  database: process.env.DB_DATABASE, // Replace with your database name
 });
 
 // Connect to the database
