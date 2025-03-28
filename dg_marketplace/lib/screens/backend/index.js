@@ -31,13 +31,31 @@ db.connect((err) => {
 // Define a route to fetch data (name, speed, glide, turn, fade)
 app.get("/api/discs", (req, res) => {
   db.query(
-    "SELECT name, speed, glide, turn, fade FROM disc_table",
+    "SELECT name, speed, glide, turn, fade, company FROM disc_table",
     (err, results) => {
       if (err) {
         res.status(500).send("Database query error");
         return;
       }
       res.json(results);
+    }
+  );
+});
+
+app.post("/api/discs", (req, res) => {
+  const { name, speed, glide, fade, turn, company } = req.body;
+  db.query(
+    "INSERT INTO disc_table (name, speed, glide, turn, fade, company) VALUES (?, ?, ?, ?, ?, ?)",
+    [name, speed, glide, turn, fade, company],
+    (err, results) => {
+      if (err) {
+        console.error("Error inserting disc:" + err);
+        res.status(500).send("Error inserting disc");
+      } else {
+        res
+          .status(201)
+          .json({ message: "Disc added successfully", id: results.inserId });
+      }
     }
   );
 });
