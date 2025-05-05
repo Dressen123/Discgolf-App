@@ -28,12 +28,12 @@ db.connect((err) => {
   console.log("Connected to the MariaDB database");
 });
 
-// Define a route to fetch data (name, speed, glide, turn, fade)
 app.get("/api/discs", (req, res) => {
   db.query(
-    "SELECT name, speed, glide, turn, fade, company FROM disc_table",
+    "SELECT name, speed, glide, turn, fade, company FROM disc_table;",
     (err, results) => {
       if (err) {
+        console.log("Database query error:", err);
         res.status(500).send("Database query error");
         return;
       }
@@ -44,18 +44,32 @@ app.get("/api/discs", (req, res) => {
 
 app.post("/api/discs", (req, res) => {
   const { name, speed, glide, fade, turn, company } = req.body;
+
+  // Check if required fields are provided
+  if (
+    !name ||
+    speed === undefined ||
+    glide === undefined ||
+    fade === undefined ||
+    turn === undefined
+  ) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
   db.query(
     "INSERT INTO disc_table (name, speed, glide, turn, fade, company) VALUES (?, ?, ?, ?, ?, ?)",
-    [name, speed, glide, turn, fade, company],
+    [name, speed, glide, turn, fade, company || null], // Use NULL if company is not provided
     (err, results) => {
       if (err) {
-        console.error("Error inserting disc:" + err);
-        res.status(500).send("Error inserting disc");
-      } else {
-        res
-          .status(201)
-          .json({ message: "Disc added successfully", id: results.inserId });
+        console.error("Error inserting disc:", err);
+        return res
+          .status(500)
+          .json({ error: "Error inserting disc", details: err.message });
       }
+
+      res
+        .status(201)
+        .json({ message: "Disc added successfully", id: results.insertId });
     }
   );
 });

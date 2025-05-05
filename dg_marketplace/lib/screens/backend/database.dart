@@ -3,10 +3,8 @@ import 'dart:convert';
 import 'package:dg_marketplace/screens/discmodel/discmodel.dart'; // Import Disc model
 
 class DiscService {
-  final String baseUrl =
-      'http://10.0.2.2:3000/api/discs'; // Use this for Android Emulator, change for real device
+  final String baseUrl = 'http://10.58.176.72:3000/api/discs';
 
-  // Fetch Discs from Backend API
   Future<List<Disc>> fetchDiscs() async {
     try {
       final response = await http.get(Uri.parse(baseUrl));

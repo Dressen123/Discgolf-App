@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dg_marketplace/screens/discmodel/discmodel.dart'; // Import DiscService
-import 'package:dg_marketplace/screens/backend/database.dart'; // Import Disc model
+import 'package:dg_marketplace/screens/backend/database.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 //Used chatGPT for part of the code.
 
@@ -41,33 +43,24 @@ class _DiscListScreenState extends State<DiscListScreen> {
                     controller: _nameController,
                     decoration: InputDecoration(labelText: "Name")),
                 TextField(
-                  controller: _speedController,
-                  decoration: InputDecoration(labelText: "Speed"),
-                  keyboardType: TextInputType.number,
-                ),
+                    controller: _speedController,
+                    decoration: InputDecoration(labelText: "Speed"),
+                    keyboardType: TextInputType.number),
                 TextField(
-                  controller: _glideController,
-                  decoration: InputDecoration(labelText: "Glide"),
-                  keyboardType: TextInputType.number,
-                ),
+                    controller: _glideController,
+                    decoration: InputDecoration(labelText: "Glide"),
+                    keyboardType: TextInputType.number),
                 TextField(
-                  controller: _turnController,
-                  decoration: InputDecoration(labelText: "Turn"),
-                  keyboardType: TextInputType.number,
-                ),
+                    controller: _turnController,
+                    decoration: InputDecoration(labelText: "Turn"),
+                    keyboardType: TextInputType.number),
                 TextField(
-                  controller: _fadeController,
-                  decoration: InputDecoration(labelText: "Fade"),
-                  keyboardType: TextInputType.number,
-                ),
+                    controller: _fadeController,
+                    decoration: InputDecoration(labelText: "Fade"),
+                    keyboardType: TextInputType.number),
                 TextField(
-                  controller: _companyController,
-                  decoration: InputDecoration(labelText: "Company"),
-                ),
-                TextField(
-                  controller: _idController,
-                  decoration: InputDecoration(labelText: "Discnumber"),
-                ),
+                    controller: _companyController,
+                    decoration: InputDecoration(labelText: "Company")),
               ],
             ),
             actions: [
@@ -77,30 +70,42 @@ class _DiscListScreenState extends State<DiscListScreen> {
               ),
               TextButton(
                 onPressed: () async {
-                  Disc newDisc = Disc(
-                    id: int.parse(_idController.text),
-                    name: _nameController.text,
-                    speed: int.parse(_speedController.text),
-                    glide: int.parse(_glideController.text),
-                    turn: int.parse(_turnController.text),
-                    fade: int.parse(_fadeController.text),
-                    company: _companyController.text,
+                  final url = Uri.parse("http://localhost:3000/api/discs");
+                  final response = await http.post(
+                    url,
+                    headers: {"Content-Type": "application/json"},
+                    body: jsonEncode({
+                      // Handle empty ID
+                      "name": _nameController.text,
+                      "speed": int.tryParse(_speedController.text) ??
+                          0, // Prevent errors
+                      "glide": int.tryParse(_glideController.text) ?? 0,
+                      "turn": int.tryParse(_turnController.text) ?? 0,
+                      "fade": int.tryParse(_fadeController.text) ?? 0,
+                      "company": _companyController.text,
+                    }),
                   );
 
-                  await DiscService().addDisc(newDisc).then((_) {
+                  print(
+                      "Response: ${response.statusCode} - ${response.body}"); // Debugging
+
+                  if (response.statusCode == 201) {
                     setState(() {
                       _discs = DiscService().fetchDiscs();
                     });
-                  });
+                    Navigator.of(context).pop();
+                  } else {
+                    print("Error: ${response.statusCode} - ${response.body}");
+                  }
 
-                  // Clear fields and close dialog
+                  // Clear fields
                   _nameController.clear();
                   _speedController.clear();
                   _glideController.clear();
                   _turnController.clear();
                   _fadeController.clear();
                   _companyController.clear();
-                  Navigator.of(context).pop();
+                  _idController.clear();
                 },
                 child: const Text("Add"),
               ),

@@ -7,7 +7,6 @@ class Disc {
   final int turn;
   final int fade;
   final String company;
-  final int? id;
 
   Disc(
       //constructor of the disc class, named and required. "required" is used to that you have to provide a value for each of the variables.
@@ -16,8 +15,7 @@ class Disc {
       required this.glide,
       required this.turn,
       required this.fade,
-      required this.company,
-      this.id}); // The constructor allows for you to make a disc manually with all the values.
+      required this.company}); // The constructor allows for you to make a disc manually with all the values.
 
   // Here i get all the data from the "index.js" and database, so i can display them.
   factory Disc.fromJson(Map<String, dynamic> json) {
@@ -29,7 +27,6 @@ class Disc {
       turn: json['turn'],
       fade: json['fade'],
       company: json['company'],
-      id: json['id'],
     );
   }
 
@@ -40,6 +37,5 @@ class Disc {
         'turn': turn,
         'fade': fade,
         'company': company,
-        'id': id,
       };
 }
