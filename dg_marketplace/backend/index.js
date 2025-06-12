@@ -1,51 +1,55 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
+require("dotenv").config();
+
+console.log("Connecting with config:", {
+  host: "localhost",
+  user: "root",
+  password: "Andreas123",
+  database: "disc_info",
+});
 
 const app = express();
 const port = 3000;
-require("dotenv").config();
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Allow all origins
+app.use(express.json()); // Parse JSON bodies
 
-// Create a connection to the MariaDB database
+// Database connection using environment variables
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER, // Replace with your MariaDB username
-  password: process.env.DB_PASSWORD, // Replace with your MariaDB password
-  database: process.env.DB_DATABASE, // Replace with your database name
+  host: "localhost", // e.g. "192.168.1.42" — not "localhost"
+  user: "root", // e.g. "dguser"
+  password: "Andreas123",
+  database: "disc_info",
 });
 
-// Connect to the database
+// Connect to DB
 db.connect((err) => {
-  //Connects to the database with the provided name and password etc
   if (err) {
-    console.error("Error connecting to the database:", err.stack);
+    console.error("❌ DB connection error:", err.stack);
     return;
   }
-  console.log("Connected to the MariaDB database");
+  console.log("✅ Connected to MariaDB");
 });
 
+// GET route to fetch all discs
 app.get("/api/discs", (req, res) => {
-  db.query(
-    "SELECT name, speed, glide, turn, fade, company FROM disc_table;",
-    (err, results) => {
-      if (err) {
-        console.log("Database query error:", err);
-        res.status(500).send("Database query error");
-        return;
-      }
-      res.json(results);
+  db.query("SELECT * FROM disc_table;", (err, results) => {
+    if (err) {
+      console.error("❌ Query error:", err);
+      return res.status(500).send("Database query error");
     }
-  );
+    res.json(results);
+  });
 });
 
+// POST route to add a disc
 app.post("/api/discs", (req, res) => {
   const { name, speed, glide, fade, turn, company } = req.body;
 
-  // Check if required fields are provided
+  // Validate input
   if (
     !name ||
     speed === undefined ||
@@ -58,23 +62,25 @@ app.post("/api/discs", (req, res) => {
 
   db.query(
     "INSERT INTO disc_table (name, speed, glide, turn, fade, company) VALUES (?, ?, ?, ?, ?, ?)",
-    [name, speed, glide, turn, fade, company || null], // Use NULL if company is not provided
+    [name, speed, glide, turn, fade, company || null],
     (err, results) => {
       if (err) {
-        console.error("Error inserting disc:", err);
-        return res
-          .status(500)
-          .json({ error: "Error inserting disc", details: err.message });
+        console.error("❌ Insert error:", err);
+        return res.status(500).json({
+          error: "Error inserting disc",
+          details: err.message,
+        });
       }
 
-      res
-        .status(201)
-        .json({ message: "Disc added successfully", id: results.insertId });
+      res.status(201).json({
+        message: "✅ Disc added successfully",
+        id: results.insertId,
+      });
     }
   );
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://0.0.0.0:${port}`);
+// Start the server on all interfaces
+app.listen(port, "0.0.0.0", () => {
+  console.log(`🚀 Server running at http://0.0.0.0:${port}`);
 });

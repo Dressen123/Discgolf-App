@@ -20,7 +20,6 @@ class _DiscListScreenState extends State<DiscListScreen> {
   final TextEditingController _turnController = TextEditingController();
   final TextEditingController _fadeController = TextEditingController();
   final TextEditingController _companyController = TextEditingController();
-  final TextEditingController _idController = TextEditingController();
 
   @override
   void initState() {
@@ -105,7 +104,6 @@ class _DiscListScreenState extends State<DiscListScreen> {
                   _turnController.clear();
                   _fadeController.clear();
                   _companyController.clear();
-                  _idController.clear();
                 },
                 child: const Text("Add"),
               ),

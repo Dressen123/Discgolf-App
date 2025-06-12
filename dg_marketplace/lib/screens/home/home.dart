@@ -25,7 +25,7 @@ class Home extends StatelessWidget {
           'Marked',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color.fromRGBO(34, 37, 41, 1),
+        backgroundColor: Colors.black,
         elevation: 0.0,
         actions: [
           // Dropdown menu button

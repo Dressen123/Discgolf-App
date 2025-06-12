@@ -6,7 +6,7 @@ class Disc {
   final int glide;
   final int turn;
   final int fade;
-  final String company;
+  final String? company;
 
   Disc(
       //constructor of the disc class, named and required. "required" is used to that you have to provide a value for each of the variables.
