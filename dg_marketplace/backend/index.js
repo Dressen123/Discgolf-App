@@ -19,10 +19,10 @@ app.use(express.json()); // Parse JSON bodies
 
 // Database connection using environment variables
 const db = mysql.createConnection({
-  host: "localhost", // e.g. "192.168.1.42" — not "localhost"
-  user: "root", // e.g. "dguser"
-  password: "Andreas123",
-  database: "disc_info",
+  host: process.env.DB_HOST, // e.g. "192.168.1.42" — not "localhost"
+  user: process.env.DB_USER, // e.g. "dguser"
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE, // Use environment variable or default to "disc_info"
 });
 
 // Connect to DB
