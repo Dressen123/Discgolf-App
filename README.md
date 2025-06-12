@@ -1,6 +1,6 @@
 # The discgolf marketplace
 
-A mobile application to help disc golf enthusiasts track and manage their disc collections, as well as finding new discs. Users can add discs with details such as name, flightnumbers, company, plastic, company and view them in an easy-to-navigate interface. The app also features an AI for recommending discs and answering your questions about disc golf.
+A mobile application to help disc golf enthusiasts track and manage their disc collections, as well as finding new discs. Users can add discs with details such as name, flightnumbers, company and view them in an easy-to-navigate interface. The app also features an AI for recommending discs and answering your questions about disc golf.
 
 ## Features
 
