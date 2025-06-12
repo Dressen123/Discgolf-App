@@ -3,13 +3,6 @@ const mysql = require("mysql2");
 const cors = require("cors");
 require("dotenv").config();
 
-console.log("Connecting with config:", {
-  host: "localhost",
-  user: "root",
-  password: "Andreas123",
-  database: "disc_info",
-});
-
 const app = express();
 const port = 3000;
 
